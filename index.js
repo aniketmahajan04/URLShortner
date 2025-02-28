@@ -1,20 +1,22 @@
 const express = require("express");
 const { PORT } = require("./config/config");
+const { userRouter }  = require("./routes/routes");
+const { connectDb } = require("./utils/feature");
+const { MONGO_URL } = require("./config/config");
 
 const app = express();
 app.use(express.json());
+app.use(express.Router());
 
-app.get("/", (req, res) => {
-    res.send("Home page");
-})
-app.get("/home", (req, res) => {
-    res.send("Home page2");
-})
-app.get("/about", (req, res) => {
-    res.send("about page2");
-})
+if(!MONGO_URL){
+    throw new Error("MONGO_URL is not define in the env variables");
+}
 
-// app.use("/api/v1/user", userRouter);
+connectDb(MONGO_URL);
+
+app.use("/api/v1/user", userRouter);
 // app.use("/api/v1/link", linkRouter);
 
-app.listen(PORT);
+app.listen(PORT, () => {
+    console.log(`Server is running on ${PORT}`);
+});
