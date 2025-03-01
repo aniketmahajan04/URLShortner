@@ -1,4 +1,4 @@
-const { Schema, model, models } = require("mongoose");
+const { Schema, model, models, Types } = require("mongoose");
 
 const userSchema = new Schema({
     name: {
@@ -15,6 +15,12 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    links: [
+        {
+            type: Types.ObjectId,
+            ref: "Link",
+        }
+    ]
 },
 {
     timestamps: true
