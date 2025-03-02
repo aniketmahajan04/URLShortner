@@ -1,7 +1,7 @@
-const nanoid = require("nanoid");
+const { nanoid } = require("nanoid");
 
 
-const generateShortUrl = () => {
+function generateShortUrl() {
     return nanoid(8);
 }
 

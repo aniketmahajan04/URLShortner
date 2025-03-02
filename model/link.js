@@ -1,12 +1,12 @@
 const { Schema, model, models } = require("mongoose");
 
 const linkSchema = new Schema({
-    link: {
+    urlLink: {
         type: String,
         required: true,
         match: [/^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/, "Invalid URL format"]
     },
-    slug: {
+    shortId: {
         type: String,
         required: true,
         unique: true
