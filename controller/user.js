@@ -64,6 +64,12 @@ const signin = async (req, res) => {
 
             res.setHeader('Authorization', `Bearer ${token}`);
 
+            res.cookie('token', token, {
+                httpOnly: true,
+                secure: req.secure || false,
+                maxAage: 60 * 60 * 1000
+            });
+
             res.status(200).json({
                 msg: "loggen in!",
                 token: token
