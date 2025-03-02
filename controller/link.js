@@ -46,6 +46,26 @@ const generate = async (req, res) => {
     }
 }
 
+const redirect = async (req, res) => {
+    const { shortId } = req.params;
+
+    try{
+        const link = await linkModel.findOne({
+            shortId: shortId
+        });
+        if(!link){
+            return res.status(404).json({ msg: "Short link not found" });
+        }
+
+        res.redirect(link.urlLink);
+
+    } catch(error){
+        console.error("Redirect error:", error);
+        res.status(500).json({ msg: "Internal server error" });
+    }
+}
+
 module.exports = {
-    generate
+    generate,
+    redirect
 }
