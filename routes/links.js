@@ -4,7 +4,7 @@ const { generate } = require("../controller/link");
 
 const linkRouter = Router();
 
-// linkRouter.post("/generate", generate);
+linkRouter.post("/generate", generate);
 
 module.exports = {
     linkRouter
