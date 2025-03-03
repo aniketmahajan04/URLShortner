@@ -6,7 +6,7 @@ const auth = (req, res, next) => {
     const token = req.cookies.token;
     if(!token){
         res.status(401).json({
-            mag: "Please login"
+            msg: "Please login"
         });
         return;
     }

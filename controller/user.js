@@ -45,7 +45,7 @@ const signin = async (req, res) => {
         });
 
         if(foundUser){
-            const isMatch = bcrypt.compare(password, foundUser.password);
+            const isMatch = await bcrypt.compare(password, foundUser.password);
 
             if(!isMatch){
                 res.status(400).json({
