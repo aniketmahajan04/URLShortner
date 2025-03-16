@@ -4,11 +4,12 @@ const jwt = require("jsonwebtoken");
 
 const auth = (req, res, next) => {
     const token = req.cookies.token;
-    if(!token){
-        res.status(401).json({
+    console.log(token);
+
+    if (!token) {
+        return res.status(401).json({
             msg: "Please login"
         });
-        return;
     }
 
     if(!JWT_SECRET){

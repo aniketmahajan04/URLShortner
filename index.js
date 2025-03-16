@@ -9,10 +9,10 @@ const cookieParser = require("cookie-parser");
 
 const app = express();
 app.use(express.json());
-app.use(express.Router());
+
 app.use(cors({
-    origin: "http://127.0.0.1:5173", // Allow frontend to access the API
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: ["http://127.0.0.1:5173", "http://localhost:5173"], // Allow frontend to access the API
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true
 }));
 
@@ -22,7 +22,6 @@ if(!MONGO_URL){
 }
 
 connectDb(MONGO_URL);
-
 app.use(cookieParser());
 
 app.use("/api/v1/user", userRouter);
